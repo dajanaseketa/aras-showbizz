@@ -18,7 +18,6 @@ export const letterSpacing = {
   "overline-m": "var(--typography-overline-m-letter-spacing)",
   "paragraph-l": "var(--typography-paragraph-l-letter-spacing)",
   "paragraph-m": "var(--typography-paragraph-m-letter-spacing)",
-  "tag-l": "var(--typography-tag-l-letter-spacing)",
   "tag-m": "var(--typography-tag-m-letter-spacing)",
   "tag-s": "var(--typography-tag-s-letter-spacing)",
   title: "var(--typography-title-letter-spacing)",

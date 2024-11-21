@@ -35,9 +35,8 @@ const textVariants = {
     "font-normal text-paragraph-l leading-paragraph-l tracking-paragraph-l",
   "paragraph-m":
     "font-normal text-paragraph-m leading-paragraph-m tracking-paragraph-m",
-  "tag-l": "font-normal text-tag-l leading-tag-l tracking-tag-l",
   "tag-m": "font-normal text-tag-m leading-tag-m tracking-tag-m",
-  "tag-s": "font-bold text-tag-s leading-tag-m tracking-tag-m",
+  "tag-s": "font-bold text-tag-s leading-tag-s tracking-tag-s",
   title: "font-bold text-title leading-title tracking-title",
 };
 

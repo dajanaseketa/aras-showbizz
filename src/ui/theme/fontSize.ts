@@ -18,7 +18,6 @@ export const fontSize = {
   "overline-m": "var(--typography-overline-m-font-size)",
   "paragraph-l": "var(--typography-paragraph-l-font-size)",
   "paragraph-m": "var(--typography-paragraph-m-font-size)",
-  "tag-l": "var(--typography-tag-l-font-size)",
   "tag-m": "var(--typography-tag-m-font-size)",
   "tag-s": "var(--typography-tag-s-font-size)",
   title: "var(--typography-title-font-size)",

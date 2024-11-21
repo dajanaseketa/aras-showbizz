@@ -18,7 +18,6 @@ export const lineHeight = {
   "overline-m": "var(--typography-overline-m-line-height)",
   "paragraph-l": "var(--typography-paragraph-l-line-height)",
   "paragraph-m": "var(--typography-paragraph-m-line-height)",
-  "tag-l": "var(--typography-tag-l-line-height)",
   "tag-m": "var(--typography-tag-m-line-height)",
   "tag-s": "var(--typography-tag-s-line-height)",
   title: "var(--typography-title-line-height)",
