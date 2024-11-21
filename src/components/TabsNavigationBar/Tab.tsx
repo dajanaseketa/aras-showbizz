@@ -1,35 +1,13 @@
-import React from "react";
-import { Box } from "./Box";
-import { Text } from "./Text";
-import { FlexLayout } from "./FlexLayout";
+import { Box, Text } from "@/ui/components";
 import clsx from "clsx";
+import React from "react";
 
-interface TabsProps {
-  tabs: TabProps[];
-}
-
-export const Tabs = React.forwardRef<any, TabsProps>(({ tabs }, ref) => {
-  return (
-    <FlexLayout ref={ref}>
-      {tabs.map((tab, index) => (
-        <Tab
-          key={`${tab.label}-${index}`}
-          label={tab.label}
-          isSelected={tab.isSelected}
-        />
-      ))}
-    </FlexLayout>
-  );
-});
-
-Box.displayName = "Tabs";
-
-interface TabProps {
+export interface TabProps {
   isSelected?: boolean;
   label: string;
 }
 
-const Tab = React.forwardRef<any, TabProps>(
+export const Tab = React.forwardRef<any, TabProps>(
   ({ isSelected = false, label }, ref) => {
     return (
       <Box
@@ -53,4 +31,4 @@ const Tab = React.forwardRef<any, TabProps>(
   }
 );
 
-Box.displayName = "Tab";
+Tab.displayName = "Tab";

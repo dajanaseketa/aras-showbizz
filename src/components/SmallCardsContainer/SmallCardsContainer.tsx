@@ -1,5 +1,5 @@
 import { FlexLayout, GridLayout, Text } from "@/ui/components";
-import { SmallCard, SmallCardProps } from "@/ui/components/SmallCard";
+import { SmallCard, SmallCardProps } from "./SmallCard";
 
 interface SmallCardsContainerProps {
   title?: string;

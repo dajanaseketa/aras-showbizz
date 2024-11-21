@@ -1,5 +1,5 @@
 import { FlexLayout, Text } from "@/ui/components";
-import { LargeCard, LargeCardProps } from "@/ui/components/LargeCard";
+import { LargeCard, LargeCardProps } from "./LargeCard";
 import { TextVariant } from "@/ui/components/Text";
 
 interface LargeCardsContainerProps {

@@ -1,0 +1,1 @@
+export { TabsNavigationBar } from "./TabsNavigationBar";
