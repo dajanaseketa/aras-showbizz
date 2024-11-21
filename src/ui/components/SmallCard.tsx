@@ -2,12 +2,12 @@ import { Button, FlexLayout, Text, Icon } from "@/ui/components";
 import clsx from "clsx";
 import Link from "next/link";
 
-interface PersonCardProps {
+interface SmallCardProps {
   href: string;
   label: string;
 }
 
-export const PersonCard: React.FC<PersonCardProps> = ({ href, label }) => {
+export const SmallCard: React.FC<SmallCardProps> = ({ href, label }) => {
   return (
     <Link href={href} passHref className="w-full h-fit">
       <FlexLayout

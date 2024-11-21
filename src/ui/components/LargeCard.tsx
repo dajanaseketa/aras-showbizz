@@ -2,16 +2,16 @@ import { FlexLayout, Text } from "@/ui/components";
 import Image from "next/image";
 import Link from "next/link";
 
-interface MovieCardProps {
+export interface LargeCardProps {
   isDark?: boolean;
   href: string;
   imageUrl: string;
   title: string;
   description: string;
-  rating: string;
+  rating?: string;
 }
 
-export const MovieCard: React.FC<MovieCardProps> = ({
+export const LargeCard: React.FC<LargeCardProps> = ({
   isDark,
   href,
   imageUrl,
@@ -51,16 +51,18 @@ export const MovieCard: React.FC<MovieCardProps> = ({
             >
               {description}
             </Text>
-            <Text
-              color={
-                isDark
-                  ? "text-dark-content-content-primary"
-                  : "text-content-content-primary"
-              }
-              variant="label-s-regular"
-            >
-              {rating}
-            </Text>
+            {rating && (
+              <Text
+                color={
+                  isDark
+                    ? "text-dark-content-content-primary"
+                    : "text-content-content-primary"
+                }
+                variant="label-s-regular"
+              >
+                {rating}
+              </Text>
+            )}
           </FlexLayout>
         </FlexLayout>
       </FlexLayout>
