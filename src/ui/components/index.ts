@@ -6,3 +6,4 @@ export { Text } from "./Text";
 export { Tag } from "./Tag";
 export { Divider } from "./Divider";
 export { Tabs } from "./Tabs";
+export { InputField } from "./InputField";
