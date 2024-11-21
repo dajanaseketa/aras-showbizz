@@ -2,7 +2,7 @@ import { Button, FlexLayout, Text, Icon } from "@/ui/components";
 import clsx from "clsx";
 import Link from "next/link";
 
-interface SmallCardProps {
+export interface SmallCardProps {
   href: string;
   label: string;
 }

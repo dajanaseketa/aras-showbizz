@@ -1,4 +1,5 @@
 export { FlexLayout } from "./FlexLayout";
+export { GridLayout } from "./GridLayout";
 export { Box } from "./Box";
 export { Icon } from "./Icon";
 export { Button } from "./Button";
