@@ -12,7 +12,7 @@ export interface LargeCardProps {
 }
 
 export const LargeCard: React.FC<LargeCardProps> = ({
-  isDark,
+  isDark = false,
   href,
   imageUrl,
   title,
