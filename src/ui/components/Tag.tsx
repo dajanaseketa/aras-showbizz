@@ -15,22 +15,23 @@ interface TagProps {
   variant?: TagVariant;
 }
 
-export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
-  const { label, variant = "m" } = props;
-  const styles = variantStylesMap[variant];
+export const Tag = React.forwardRef<any, TagProps>(
+  ({ label, variant = "m" }, ref) => {
+    const styles = variantStylesMap[variant];
 
-  return (
-    <Text
-      ref={ref}
-      variant={`tag-${variant}`}
-      className={clsx(
-        "w-fit rounded-sm border text-content-content-primary border-border-border-low-contrast",
-        styles
-      )}
-    >
-      {label}
-    </Text>
-  );
-});
+    return (
+      <Text
+        ref={ref}
+        variant={`tag-${variant}`}
+        className={clsx(
+          "w-fit rounded-sm border text-content-content-primary border-border-border-low-contrast",
+          styles
+        )}
+      >
+        {label}
+      </Text>
+    );
+  }
+);
 
 Box.displayName = "Tag";
