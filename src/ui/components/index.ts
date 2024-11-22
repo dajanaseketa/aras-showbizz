@@ -7,3 +7,4 @@ export { Text } from "./Text";
 export { Tag } from "./Tag";
 export { Divider } from "./Divider";
 export { InputField } from "./InputField";
+export { Dialog } from "./Dialog";
