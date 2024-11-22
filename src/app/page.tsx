@@ -13,7 +13,7 @@ import {
   TrendingContainer,
   PopularContainer,
   UpcomingContainer,
-} from "@/pages-components";
+} from "@/pagesComponents";
 import { FlexLayout } from "@/ui/components";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
