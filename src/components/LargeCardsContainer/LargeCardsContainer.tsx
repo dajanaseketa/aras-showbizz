@@ -45,19 +45,9 @@ export const LargeCardsContainer: React.FC<LargeCardsContainerProps> = ({
         {tabs && <TabsNavigationBar tabs={tabs} />}
       </FlexLayout>
       <FlexLayout className="gap-center-grid-l-gutter-width overflow-scroll">
-        {cards.map((card, index) => {
-          if (!card) {
-            return;
-          }
-
-          return (
-            <LargeCard
-              key={`${card.title}-${index}`}
-              {...card}
-              isDark={isDark}
-            />
-          );
-        })}
+        {cards.map((card, index) => (
+          <LargeCard key={`${card.title}-${index}`} {...card} isDark={isDark} />
+        ))}
       </FlexLayout>
     </FlexLayout>
   );

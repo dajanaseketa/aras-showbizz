@@ -37,6 +37,12 @@ export function mapItemsToCards(items: (Movie | Tv | Person)[]) {
           imageUrl: item.profile_path,
           title: item.name,
         };
+      default:
+        return {
+          href: "/",
+          title: "",
+          imageUrl: "",
+        };
     }
   });
 }

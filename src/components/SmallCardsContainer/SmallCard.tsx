@@ -1,13 +1,13 @@
-import { Button, FlexLayout, Text, Icon } from "@/ui/components";
+import { FlexLayout, Text, Icon } from "@/ui/components";
 import clsx from "clsx";
 import Link from "next/link";
 
 export interface SmallCardProps {
   href: string;
-  label: string;
+  title: string;
 }
 
-export const SmallCard: React.FC<SmallCardProps> = ({ href, label }) => {
+export const SmallCard: React.FC<SmallCardProps> = ({ href, title }) => {
   return (
     <Link href={href} passHref className="w-full h-fit">
       <FlexLayout
@@ -16,7 +16,7 @@ export const SmallCard: React.FC<SmallCardProps> = ({ href, label }) => {
           "hover:border-border-border-high-contrast focus:border-border-border-high-contrast hover:underline focus:underline"
         )}
       >
-        <Text variant="button-l">{label}</Text>
+        <Text variant="button-l">{title}</Text>
         <Icon icon="arrowRight" />
       </FlexLayout>
     </Link>

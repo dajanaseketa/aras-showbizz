@@ -2,7 +2,6 @@
 
 import { trendingAllDayOptions, trendingAllWeekOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
-import { LargeCardProps } from "@/components/LargeCardsContainer/LargeCard";
 import { Box, FlexLayout } from "@/ui/components";
 import { mapItemsToCards } from "@/utils/itemTypeCheck";
 import { useQuery } from "@tanstack/react-query";
@@ -40,11 +39,7 @@ export const TrendingContainer: React.FC = () => {
   return (
     <FlexLayout className="py-2xl px-center-grid-l-margin-width justify-center">
       <Box className="max-w-[1200px]">
-        <LargeCardsContainer
-          title="Trending"
-          tabs={tabs}
-          cards={cards as LargeCardProps[]}
-        />
+        <LargeCardsContainer title="Trending" tabs={tabs} cards={cards} />
       </Box>
     </FlexLayout>
   );

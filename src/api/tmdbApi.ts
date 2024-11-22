@@ -4,9 +4,17 @@ import { Item, Movie, Person, Tv } from "./types";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-const fetcher = async <T>(endpoint: string): Promise<T> => {
-  const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
-  if (!res.ok) throw new Error("Data fetching failed.");
+const fetcher = async <T>(
+  endpoint: string,
+  hasParams?: boolean
+): Promise<T> => {
+  const url = `${BASE_URL}${endpoint}${
+    hasParams ? "&" : "?"
+  }api_key=${API_KEY}`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error("Data fetching failed.");
+  }
 
   const data = await res.json();
   return data.results;
@@ -61,3 +69,7 @@ export const popularPeopleOptions = queryOptions({
   queryKey: ["popular", "people"],
   queryFn: async () => await getPopularPeople(),
 });
+
+export async function getSearchResults(searchQuery: string) {
+  return fetcher<Item[]>(`/search/multi?query=${searchQuery}`, true);
+}

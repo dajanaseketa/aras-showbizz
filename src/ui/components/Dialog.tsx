@@ -18,7 +18,7 @@ export const Dialog: React.FC<DialogProps> = ({
       {isOpen && (
         <ReactDialog.Portal>
           <ReactDialog.Overlay className="fixed top-[74px] z-10">
-            <ReactDialog.Content className="flex flex-col outline-none bg-white w-screen h-screen py-m items-center">
+            <ReactDialog.Content className="flex flex-col outline-none bg-white w-screen h-screen pt-m pb-4xl items-center overflow-y-scroll">
               <ReactDialog.Title className="hidden">{title}</ReactDialog.Title>
               {children}
             </ReactDialog.Content>

@@ -6,7 +6,6 @@ import {
   popularTvOptions,
 } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
-import { LargeCardProps } from "@/components/LargeCardsContainer/LargeCard";
 import { Box, FlexLayout } from "@/ui/components";
 import { mapItemsToCards } from "@/utils/itemTypeCheck";
 import { useQuery } from "@tanstack/react-query";
@@ -59,7 +58,7 @@ export const PopularContainer: React.FC = () => {
           title="Popular"
           tabNavigationBarPosition="end"
           tabs={tabs}
-          cards={cards as LargeCardProps[]}
+          cards={cards}
         />
       </Box>
     </FlexLayout>

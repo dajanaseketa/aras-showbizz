@@ -19,7 +19,7 @@ export const SmallCardsContainer: React.FC<SmallCardsContainerProps> = ({
       )}
       <GridLayout className="gap-center-grid-l-gutter-width grid-cols-2">
         {cards.map((card, index) => (
-          <SmallCard key={`${card.label}-${index}`} {...card} />
+          <SmallCard key={`${card.title}-${index}`} {...card} />
         ))}
       </GridLayout>
     </FlexLayout>
