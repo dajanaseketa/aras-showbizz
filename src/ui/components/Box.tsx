@@ -18,6 +18,7 @@ export const Box = React.forwardRef<any, BoxProps>(
           isDisabled && "pointer-events-none",
           !isDisabled && onClick && "cursor-pointer"
         )}
+        onClick={onClick}
         ref={ref}
         {...rest}
       />

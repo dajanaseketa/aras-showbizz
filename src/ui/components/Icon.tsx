@@ -23,21 +23,16 @@ type IconProps = Pick<
 };
 
 export const Icon = React.forwardRef<any, IconProps>(
-  (
-    { ariaLabel, color, icon, size = "m", onClick, className, ...rest },
-    ref
-  ) => {
+  ({ color, icon, size = "m", className, ...rest }, ref) => {
     const IconComponent = icons[icon];
 
     return (
       <Box
         ref={ref}
-        aria-label={ariaLabel}
-        onClick={onClick}
         className={clsx(className, sizeVariants[size], color, "flex-none")}
         {...rest}
       >
-        <IconComponent height="100%" width="100%" viewBox="0 0 24 24" />
+        <IconComponent height="100%" width="100%" />
       </Box>
     );
   }
