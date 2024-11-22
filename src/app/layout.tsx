@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ReactQueryProvider } from "@/components";
 
 export const metadata: Metadata = {
   title: "Aras Showbizz",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ReactQueryProvider>
+        <body>{children}</body>
+      </ReactQueryProvider>
     </html>
   );
 }

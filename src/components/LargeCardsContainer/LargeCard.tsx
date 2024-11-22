@@ -1,4 +1,5 @@
 import { FlexLayout, Text } from "@/ui/components";
+import { getAbsoluteImageUrl } from "@/utils/getAbsoluteImageUrl";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +8,7 @@ export interface LargeCardProps {
   href: string;
   imageUrl: string;
   title: string;
-  description: string;
+  description?: string;
   rating?: string;
 }
 
@@ -23,7 +24,7 @@ export const LargeCard: React.FC<LargeCardProps> = ({
     <Link href={href} passHref className="min-w-[240px]">
       <FlexLayout className="flex-col">
         <Image
-          src={imageUrl || "/images/movie-image-placeholder.png"}
+          src={getAbsoluteImageUrl(imageUrl)}
           alt={`${title} movie cover image`}
           className="rounded-lg"
           width={240}

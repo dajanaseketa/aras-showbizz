@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  images: {
+    domains: ["image.tmdb.org"],
+  },
 };
 
 export default nextConfig;

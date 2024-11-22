@@ -11,11 +11,7 @@ export const TabsNavigationBar = React.forwardRef<any, TabsNavigationBarProps>(
     return (
       <FlexLayout ref={ref}>
         {tabs.map((tab, index) => (
-          <Tab
-            key={`${tab.label}-${index}`}
-            label={tab.label}
-            isSelected={tab.isSelected}
-          />
+          <Tab key={`${tab.label}-${index}`} {...tab} />
         ))}
       </FlexLayout>
     );

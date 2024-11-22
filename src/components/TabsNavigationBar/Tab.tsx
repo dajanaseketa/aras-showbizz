@@ -5,12 +5,16 @@ import React from "react";
 export interface TabProps {
   isSelected?: boolean;
   label: string;
+  onClick: () => void;
 }
 
 export const Tab = React.forwardRef<any, TabProps>(
-  ({ isSelected = false, label }, ref) => {
+  ({ isSelected = false, label, onClick }, ref) => {
     return (
       <Box
+        as="button"
+        ref={ref}
+        onClick={onClick}
         className={clsx(
           "after:content-[''] after:block after:w-full after:hover:bg-content-content-hover after:focus:bg-content-content-hover",
           "hover:text-content-content-hover hover:cursor-pointer",
@@ -20,7 +24,6 @@ export const Tab = React.forwardRef<any, TabProps>(
         )}
       >
         <Text
-          ref={ref}
           className="px-2xs"
           variant={isSelected ? "navigation-selected" : "navigation-unselected"}
         >

@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, FlexLayout, Icon } from "@/ui/components";
+import { FlexLayout, Icon } from "@/ui/components";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
