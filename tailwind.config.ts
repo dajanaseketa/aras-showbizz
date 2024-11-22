@@ -8,7 +8,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/ui/**/*.{ts,tsx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/pages-components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pagesComponents/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {

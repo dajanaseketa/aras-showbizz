@@ -17,8 +17,15 @@ const fetcher = async <T>(
   }
 
   const data = await res.json();
-  return data.results;
+
+  if (data.results) {
+    return data.results;
+  } else {
+    return data;
+  }
 };
+
+// Trending
 
 async function getTrendingAll(time: "day" | "week") {
   return fetcher<Item[]>(`/trending/all/${time}`);
@@ -34,8 +41,10 @@ export const trendingAllWeekOptions = queryOptions({
   queryFn: async () => await getTrendingAll("week"),
 });
 
+// Upcoming
+
 async function getUpcomingMovies() {
-  return fetcher<Movie[]>(`/movie/upcoming`);
+  return fetcher<Movie[]>("/movie/upcoming");
 }
 
 export const upcomingMoviesOptions = queryOptions({
@@ -43,8 +52,10 @@ export const upcomingMoviesOptions = queryOptions({
   queryFn: async () => await getUpcomingMovies(),
 });
 
+// Popular
+
 async function getPopularMovies() {
-  return fetcher<Movie[]>(`/movie/popular`);
+  return fetcher<Movie[]>("/movie/popular");
 }
 
 export const popularMoviesOptions = queryOptions({
@@ -53,7 +64,7 @@ export const popularMoviesOptions = queryOptions({
 });
 
 async function getPopularTv() {
-  return fetcher<Tv[]>(`/tv/popular`);
+  return fetcher<Tv[]>("/tv/popular");
 }
 
 export const popularTvOptions = queryOptions({
@@ -62,7 +73,7 @@ export const popularTvOptions = queryOptions({
 });
 
 async function getPopularPeople() {
-  return fetcher<Person[]>(`/person/popular`);
+  return fetcher<Person[]>("/person/popular");
 }
 
 export const popularPeopleOptions = queryOptions({
@@ -70,6 +81,21 @@ export const popularPeopleOptions = queryOptions({
   queryFn: async () => await getPopularPeople(),
 });
 
+// Search
+
 export async function getSearchResults(searchQuery: string) {
   return fetcher<Item[]>(`/search/multi?query=${searchQuery}`, true);
+}
+
+// Person Details
+
+async function getPersonDetails(id: string) {
+  return fetcher<Person>(`/person/${id}`);
+}
+
+export function getPersonDetailsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["person", id],
+    queryFn: async () => await getPersonDetails(id),
+  });
 }

@@ -28,6 +28,11 @@ export type Person = {
   profile_path: string;
   popularity: number;
   media_type: MediaType;
+  known_for_department: string;
+  known_for: Movie[];
+  biography: string;
+  birthday: string;
+  place_of_birth: string;
 };
 
 export type Item = Movie | Tv | Person;

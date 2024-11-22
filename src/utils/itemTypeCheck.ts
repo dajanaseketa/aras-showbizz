@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Item, MediaType, Movie, Person, Tv } from "../api/types";
 
 export function isMovie(item: Item): item is Movie {
@@ -20,7 +21,7 @@ export function mapItemsToCards(items: (Movie | Tv | Person)[]) {
           href: `/movie/${item.id}`,
           imageUrl: item.poster_path,
           title: item.title,
-          description: item.release_date,
+          description: dayjs(item.release_date).format("D MMM: YYYY"),
           rating: `${item.popularity}%`,
         };
       case isTv(item):
@@ -28,7 +29,7 @@ export function mapItemsToCards(items: (Movie | Tv | Person)[]) {
           href: `/tv/${item.id}`,
           imageUrl: item.poster_path,
           title: item.name,
-          description: item.first_air_date,
+          description: dayjs(item.first_air_date).format("D MMM: YYYY"),
           rating: `${item.popularity}%`,
         };
       case isPerson(item):
