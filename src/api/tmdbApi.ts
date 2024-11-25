@@ -1,5 +1,13 @@
 import { queryOptions } from "@tanstack/react-query";
-import { Item, Movie, Person, Tv } from "./types";
+import {
+  MediaItem,
+  Movie,
+  MovieCredits,
+  MovieKeywords,
+  Person,
+  PersonCredits,
+  TvShow,
+} from "./types";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -28,7 +36,7 @@ const fetcher = async <T>(
 // Trending
 
 async function getTrendingAll(time: "day" | "week") {
-  return fetcher<Item[]>(`/trending/all/${time}`);
+  return fetcher<MediaItem[]>(`/trending/all/${time}`);
 }
 
 export const trendingAllDayOptions = queryOptions({
@@ -63,13 +71,13 @@ export const popularMoviesOptions = queryOptions({
   queryFn: async () => await getPopularMovies(),
 });
 
-async function getPopularTv() {
-  return fetcher<Tv[]>("/tv/popular");
+async function getPopularTvShows() {
+  return fetcher<TvShow[]>("/tv/popular");
 }
 
-export const popularTvOptions = queryOptions({
+export const popularTvShowsOptions = queryOptions({
   queryKey: ["popular", "tv"],
-  queryFn: async () => await getPopularTv(),
+  queryFn: async () => await getPopularTvShows(),
 });
 
 async function getPopularPeople() {
@@ -84,7 +92,7 @@ export const popularPeopleOptions = queryOptions({
 // Search
 
 export async function getSearchResults(searchQuery: string) {
-  return fetcher<Item[]>(`/search/multi?query=${searchQuery}`, true);
+  return fetcher<MediaItem[]>(`/search/multi?query=${searchQuery}`, true);
 }
 
 // Person Details
@@ -97,5 +105,70 @@ export function getPersonDetailsOptions(id: string) {
   return queryOptions({
     queryKey: ["person", id],
     queryFn: async () => await getPersonDetails(id),
+  });
+}
+
+// Person Credits
+
+async function getPersonCredits(id: string) {
+  return fetcher<PersonCredits>(`/person/${id}/combined_credits`);
+}
+
+export function getPersonCreditsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["person-credits", id],
+    queryFn: async () => await getPersonCredits(id),
+  });
+}
+
+// Movie Details
+
+async function getMovieDetails(id: string) {
+  return fetcher<Movie>(`/movie/${id}`);
+}
+
+export function getMovieDetailsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["movie", id],
+    queryFn: async () => await getMovieDetails(id),
+  });
+}
+
+// Movie Recommendations
+
+async function getMovieRecommendations(id: string) {
+  return fetcher<Movie[]>(`/movie/${id}/recommendations`);
+}
+
+export function getMovieRecommendationsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["movie-recommendations", id],
+    queryFn: async () => await getMovieRecommendations(id),
+  });
+}
+
+// Movie Credits
+
+async function getMovieCredits(id: string) {
+  return fetcher<MovieCredits>(`/movie/${id}/credits`);
+}
+
+export function getMovieCreditsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["movie-credits", id],
+    queryFn: async () => await getMovieCredits(id),
+  });
+}
+
+// Movie Keywords
+
+async function getMovieKeywords(id: string) {
+  return fetcher<MovieKeywords>(`/movie/${id}/keywords`);
+}
+
+export function getMovieKeywordsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["movie-keywords", id],
+    queryFn: async () => await getMovieKeywords(id),
   });
 }

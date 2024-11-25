@@ -1,6 +1,7 @@
 "use client";
 
 import { getPersonDetailsOptions } from "@/api/tmdbApi";
+import { InformationCard } from "@/components";
 import { FlexLayout, Text } from "@/ui/components";
 import { getAbsoluteImageUrl } from "@/utils/getAbsoluteImageUrl";
 import { useQuery } from "@tanstack/react-query";
@@ -33,46 +34,22 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
         </Text>
         <FlexLayout className="flex-col gap-s">
           {!!personDetails.known_for_department && (
-            <FlexLayout className="flex-col">
-              <Text
-                color="text-content-content-secondary"
-                variant="caption-s"
-                className="uppercase"
-              >
-                Known for
-              </Text>
-              <Text variant="paragraph-m" color="text-content-content-brand">
-                {personDetails.known_for_department}
-              </Text>
-            </FlexLayout>
+            <InformationCard
+              label="Known for"
+              value={personDetails.known_for_department}
+            />
           )}
           {!!personDetails.birthday && (
-            <FlexLayout className="flex-col">
-              <Text
-                color="text-content-content-secondary"
-                variant="caption-s"
-                className="uppercase"
-              >
-                Birthdate
-              </Text>
-              <Text variant="paragraph-m" color="text-content-content-brand">
-                {dayjs(personDetails.birthday).format("D MMMM, YYYY")}
-              </Text>
-            </FlexLayout>
+            <InformationCard
+              label="Birthdate"
+              value={dayjs(personDetails.birthday).format("D MMMM, YYYY")}
+            />
           )}
           {!!personDetails.place_of_birth && (
-            <FlexLayout className="flex-col">
-              <Text
-                color="text-content-content-secondary"
-                variant="caption-s"
-                className="uppercase"
-              >
-                Place of birth
-              </Text>
-              <Text variant="paragraph-m" color="text-content-content-brand">
-                {personDetails.place_of_birth}
-              </Text>
-            </FlexLayout>
+            <InformationCard
+              label="Place of birth"
+              value={personDetails.place_of_birth}
+            />
           )}
         </FlexLayout>
       </FlexLayout>

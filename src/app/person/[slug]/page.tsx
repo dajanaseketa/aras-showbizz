@@ -1,7 +1,9 @@
-import { getPersonDetailsOptions } from "@/api/tmdbApi";
+import {
+  getPersonCreditsOptions,
+  getPersonDetailsOptions,
+} from "@/api/tmdbApi";
 import { Footer, Header, getQueryClient } from "@/components";
-import { PersonalInfo } from "@/pagesComponents";
-import { Biography } from "@/pagesComponents/personPage/Biography";
+import { Biography, PersonalInfo, KnownFor } from "@/pagesComponents";
 import { FlexLayout } from "@/ui/components";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
@@ -14,17 +16,19 @@ export default async function PersonPage({
 
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(getPersonDetailsOptions(id));
+  await queryClient.prefetchQuery(getPersonCreditsOptions(id));
 
   return (
-    <div className="min-h-screen">
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <Header />
-        <FlexLayout className="max-w-center-grid-l-container-max-width min-w-center-grid-l-container-min-width h-screen py-xl mx-auto gap-center-grid-l-gutter-width">
-          <PersonalInfo id={id} />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Header />
+      <FlexLayout className="min-h-screen max-w-center-grid-l-container-max-width min-w-center-grid-l-container-min-width py-xl mx-auto gap-center-grid-l-gutter-width">
+        <PersonalInfo id={id} />
+        <FlexLayout className="flex-col max-w-[920px]">
           <Biography id={id} />
+          <KnownFor id={id} />
         </FlexLayout>
-        <Footer />
-      </HydrationBoundary>
-    </div>
+      </FlexLayout>
+      <Footer />
+    </HydrationBoundary>
   );
 }

@@ -1,32 +1,67 @@
 export enum MediaType {
   Movie = "movie",
-  Tv = "tv",
+  TvShow = "tv",
   Person = "person",
 }
 
+type MovieGenre = {
+  id: number;
+  name: string;
+};
+
 export type Movie = {
-  id: string;
+  id: number;
   title: string;
   release_date: string;
   poster_path: string;
-  popularity: number;
+  vote_average: number;
   media_type: MediaType;
+  genres: MovieGenre[];
+  overview: string;
+  status: string;
+  network: string;
+  type: string;
+  original_language: string;
+  production_companies: ProductionCompany[];
 };
 
-export type Tv = {
-  id: string;
+export type ProductionCompany = {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+};
+
+export type MovieCredits = {
+  id: number;
+  cast: CastMember[];
+};
+
+export type CastMember = {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string;
+};
+
+export type MovieKeywords = {
+  id: number;
+  keywords: { id: number; name: string }[];
+};
+
+export type TvShow = {
+  id: number;
   name: string;
   first_air_date: string;
   poster_path: string;
-  popularity: number;
+  vote_average: number;
   media_type: MediaType;
 };
 
 export type Person = {
-  id: string;
+  id: number;
   name: string;
   profile_path: string;
-  popularity: number;
   media_type: MediaType;
   known_for_department: string;
   known_for: Movie[];
@@ -35,4 +70,9 @@ export type Person = {
   place_of_birth: string;
 };
 
-export type Item = Movie | Tv | Person;
+export type PersonCredits = {
+  id: number;
+  cast: Movie[];
+};
+
+export type MediaItem = Movie | TvShow | Person;
