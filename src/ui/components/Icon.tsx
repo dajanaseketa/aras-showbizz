@@ -32,7 +32,7 @@ export const Icon = React.forwardRef<any, IconProps>(
         className={clsx(className, sizeVariants[size], color, "flex-none")}
         {...rest}
       >
-        <IconComponent height="100%" width="100%" />
+        <IconComponent />
       </Box>
     );
   }
