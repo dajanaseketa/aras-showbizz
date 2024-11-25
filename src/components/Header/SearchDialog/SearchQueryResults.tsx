@@ -4,9 +4,9 @@ import { Divider, FlexLayout, Text } from "@/ui/components";
 import {
   isMovie,
   isPerson,
-  isTv,
+  isTvShow,
   mapItemsToCards,
-} from "@/utils/itemTypeCheck";
+} from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import isEmpty from "lodash/isEmpty";
 
@@ -23,10 +23,14 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
   });
 
   const movieResults = searchResults?.filter(isMovie);
-  const tvResults = searchResults?.filter(isTv);
+  const tvShowResults = searchResults?.filter(isTvShow);
   const peopleResults = searchResults?.filter(isPerson);
 
-  if (isEmpty(peopleResults) && isEmpty(movieResults) && isEmpty(tvResults)) {
+  if (
+    isEmpty(peopleResults) &&
+    isEmpty(movieResults) &&
+    isEmpty(tvShowResults)
+  ) {
     return (
       <Text variant="paragraph-l" className="pt-4xl text-center">
         No results for `{searchQuery}`. <br /> Try typing something else.
@@ -55,13 +59,13 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
           />
         </>
       )}
-      {tvResults && !isEmpty(tvResults) && (
+      {tvShowResults && !isEmpty(tvShowResults) && (
         <>
           <Divider variant="horizontal" />
           <LargeCardsContainer
             titleVariant="h5"
             title="Top searched TV Shows"
-            cards={mapItemsToCards(tvResults)}
+            cards={mapItemsToCards(tvShowResults)}
           />
         </>
       )}

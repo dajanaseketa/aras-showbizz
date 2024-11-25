@@ -3,7 +3,7 @@
 import { getPersonDetailsOptions } from "@/api/tmdbApi";
 import { InformationCard } from "@/components";
 import { FlexLayout, Text } from "@/ui/components";
-import { getAbsoluteImageUrl } from "@/utils/getAbsoluteImageUrl";
+import { getAbsoluteImageUrl } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import Image from "next/image";

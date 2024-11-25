@@ -49,6 +49,19 @@ export type MovieKeywords = {
   keywords: { id: number; name: string }[];
 };
 
+export type MovieImages = {
+  id: number;
+  posters: MovieImage[];
+  logos: MovieImage[];
+  backdrops: MovieImage[];
+};
+
+export type MovieImage = {
+  file_path: string;
+  height: number;
+  width: number;
+};
+
 export type TvShow = {
   id: number;
   name: string;

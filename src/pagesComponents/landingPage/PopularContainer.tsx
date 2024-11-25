@@ -12,7 +12,8 @@ import {
   mapMovieToCard,
   mapPersonToCard,
   mapTvShowToCard,
-} from "@/utils/itemTypeCheck";
+} from "@/utils/apiDataTransformations";
+
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 

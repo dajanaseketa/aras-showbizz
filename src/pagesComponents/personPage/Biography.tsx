@@ -3,7 +3,7 @@
 import { getPersonDetailsOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
 import { FlexLayout, Text } from "@/ui/components";
-import { mapItemsToCards } from "@/utils/itemTypeCheck";
+import { mapItemsToCards } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 

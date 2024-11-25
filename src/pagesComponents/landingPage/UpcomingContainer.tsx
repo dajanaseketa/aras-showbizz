@@ -3,7 +3,7 @@
 import { upcomingMoviesOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
-import { getRatingPercentage } from "@/utils/getAbsoluteImageUrl";
+import { getRatingPercentage } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useMemo } from "react";

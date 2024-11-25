@@ -73,9 +73,10 @@ type ButtonProps = Pick<
   size?: ButtonSizeVariant;
   variant?: "primary" | "secondary";
   label: string;
+  isFullWidth?: boolean;
 };
 
-export const Button = React.forwardRef<any, ButtonProps>(
+export const Button = React.forwardRef<unknown, ButtonProps>(
   (
     {
       as = "button",
@@ -85,6 +86,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
       size = "m",
       variant = "primary",
       label,
+      isFullWidth = false,
       ...rest
     },
     ref
@@ -97,7 +99,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
       <Box
         as={as}
         className={clsx(
-          "w-fit",
+          isFullWidth ? "w-full" : "w-fit",
           !isDisabled && "cursor-pointer",
           sizeStyles,
           styles

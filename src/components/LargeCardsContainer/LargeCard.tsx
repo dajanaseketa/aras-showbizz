@@ -1,5 +1,5 @@
 import { Box, FlexLayout, Text } from "@/ui/components";
-import { getAbsoluteImageUrl } from "@/utils/getAbsoluteImageUrl";
+import { getAbsoluteImageUrl } from "@/utils/apiDataTransformations";
 import Image from "next/image";
 import Link from "next/link";
 

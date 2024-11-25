@@ -3,6 +3,7 @@ import {
   MediaItem,
   Movie,
   MovieCredits,
+  MovieImages,
   MovieKeywords,
   Person,
   PersonCredits,
@@ -170,5 +171,18 @@ export function getMovieKeywordsOptions(id: string) {
   return queryOptions({
     queryKey: ["movie-keywords", id],
     queryFn: async () => await getMovieKeywords(id),
+  });
+}
+
+// Movie Images
+
+async function getMovieImages(id: string) {
+  return fetcher<MovieImages>(`/movie/${id}/images`);
+}
+
+export function getMovieImagesOptions(id: string) {
+  return queryOptions({
+    queryKey: ["movie-images", id],
+    queryFn: async () => await getMovieImages(id),
   });
 }

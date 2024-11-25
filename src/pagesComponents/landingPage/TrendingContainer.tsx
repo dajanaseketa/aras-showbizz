@@ -3,7 +3,7 @@
 import { trendingAllDayOptions, trendingAllWeekOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
-import { mapItemsToCards } from "@/utils/itemTypeCheck";
+import { mapItemsToCards } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 
