@@ -11,10 +11,7 @@ export const Hero: React.FC = () => {
         height={596}
         alt="Content hero image"
       />
-      <FlexLayout
-        className="absolute flex-col w-full items-center top-[35%] gap-s text-dark-content-content-primary"
-        style={{ position: "absolute" }}
-      >
+      <FlexLayout className="absolute flex-col w-full items-center top-[35%] gap-s text-dark-content-content-primary">
         <Text as="h1" variant="h1">
           Welcome.
         </Text>

@@ -6,7 +6,7 @@ import { TabsNavigationBar } from "../TabsNavigationBar";
 import clsx from "clsx";
 
 interface LargeCardsContainerProps {
-  cards: LargeCardProps[];
+  cards?: LargeCardProps[];
   title?: string;
   titleVariant?: TextVariant;
   isDark?: boolean;
@@ -22,6 +22,10 @@ export const LargeCardsContainer: React.FC<LargeCardsContainerProps> = ({
   tabs,
   tabNavigationBarPosition = "start",
 }) => {
+  if (!cards) {
+    return;
+  }
+
   return (
     <FlexLayout className="gap-l flex-col max-w-full">
       <FlexLayout

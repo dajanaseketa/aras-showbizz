@@ -1,7 +1,7 @@
 import {
   popularMoviesOptions,
   popularPeopleOptions,
-  popularTvOptions,
+  popularTvShowsOptions,
   trendingAllDayOptions,
   trendingAllWeekOptions,
   upcomingMoviesOptions,
@@ -24,24 +24,22 @@ export default async function LandingPage() {
   await queryClient.prefetchQuery(trendingAllWeekOptions);
   await queryClient.prefetchQuery(upcomingMoviesOptions);
   await queryClient.prefetchQuery(popularMoviesOptions);
-  await queryClient.prefetchQuery(popularTvOptions);
+  await queryClient.prefetchQuery(popularTvShowsOptions);
   await queryClient.prefetchQuery(popularPeopleOptions);
 
   return (
-    <div className="min-h-screen">
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <Header />
-        <Hero />
-        <FlexLayout className="flex-col">
-          <TrendingContainer />
-          <UpcomingContainer />
-          <PopularContainer />
-        </FlexLayout>
-        <FlexLayout className="flex-col sticky top-[100vh] bg-dark-background-background-black">
-          <JoinTodayBanner />
-          <Footer />
-        </FlexLayout>
-      </HydrationBoundary>
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Header />
+      <Hero />
+      <FlexLayout className="flex-col">
+        <TrendingContainer />
+        <UpcomingContainer />
+        <PopularContainer />
+      </FlexLayout>
+      <FlexLayout className="flex-col sticky top-[100vh] bg-dark-background-background-black">
+        <JoinTodayBanner />
+        <Footer />
+      </FlexLayout>
+    </HydrationBoundary>
   );
 }

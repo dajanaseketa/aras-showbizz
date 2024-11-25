@@ -3,7 +3,9 @@
 import { upcomingMoviesOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
+import { getRatingPercentage } from "@/utils/getAbsoluteImageUrl";
 import { useQuery } from "@tanstack/react-query";
+import dayjs from "dayjs";
 import { useMemo } from "react";
 
 export const UpcomingContainer: React.FC = () => {
@@ -15,8 +17,8 @@ export const UpcomingContainer: React.FC = () => {
         href: `/movie/${movie.id}`,
         imageUrl: movie.poster_path,
         title: movie.title,
-        description: movie.release_date,
-        rating: `${movie.popularity}%`,
+        description: dayjs(movie.release_date).format("D MMM: YYYY"),
+        rating: `${getRatingPercentage(movie.vote_average)}%`,
       })),
     [upcomingMovies]
   );

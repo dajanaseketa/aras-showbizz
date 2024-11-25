@@ -18,7 +18,12 @@ export const JoinTodayBanner: React.FC = () => {
             services like Netflix, Amazon Prime Video, FlixOlé, MUBI, and Zee5.
           </Text>
         </FlexLayout>
-        <Button variant="secondary" label="Sign Up" iconRight="arrowRight" />
+        <Button
+          variant="secondary"
+          size="l"
+          label="Sign Up"
+          iconRight="arrowRight"
+        />
       </FlexLayout>
     </Box>
   );

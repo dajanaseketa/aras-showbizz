@@ -1,4 +1,4 @@
-import { FlexLayout, Text } from "@/ui/components";
+import { Box, FlexLayout, Text } from "@/ui/components";
 import { getAbsoluteImageUrl } from "@/utils/getAbsoluteImageUrl";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,22 +22,25 @@ export const LargeCard: React.FC<LargeCardProps> = ({
 }) => {
   return (
     <Link href={href} passHref className="min-w-[240px]">
-      <FlexLayout className="flex-col">
-        <Image
-          src={getAbsoluteImageUrl(imageUrl)}
-          alt={`${title} movie cover image`}
-          className="rounded-lg"
-          width={240}
-          height={360}
-        />
+      <FlexLayout className="flex-col group">
+        <Box className="overflow-hidden rounded-lg w-[240px] h-[360px]">
+          <Image
+            src={getAbsoluteImageUrl(imageUrl)}
+            alt={`${title} movie cover image`}
+            className="group-hover:scale-110 object-cover transition-all"
+            width={240}
+            height={360}
+          />
+        </Box>
         <FlexLayout className="flex-col py-4 gap-3xs">
           <Text
             color={
               isDark
-                ? "text-dark-content-content-primary"
-                : "text-content-content-primary"
+                ? "text-dark-content-content-primary group-hover:text-dark-content-content-hover"
+                : "text-content-content-primary group-hover:text-content-content-hover"
             }
             variant="title"
+            className="truncate"
           >
             {title}
           </Text>
