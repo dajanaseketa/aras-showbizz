@@ -5,6 +5,7 @@ import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
 import { mapItemsToCards } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
+import isEmpty from "lodash/isEmpty";
 
 interface RecommendationsProps {
   id: string;
@@ -15,7 +16,7 @@ export const Recommendations: React.FC<RecommendationsProps> = ({ id }) => {
     getMovieRecommendationsOptions(id)
   );
 
-  if (!movieRecommendations) {
+  if (!movieRecommendations || isEmpty(movieRecommendations)) {
     return;
   }
 

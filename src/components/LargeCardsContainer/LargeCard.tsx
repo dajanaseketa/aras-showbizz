@@ -21,7 +21,7 @@ export const LargeCard: React.FC<LargeCardProps> = ({
   rating,
 }) => {
   return (
-    <Link href={href} passHref className="min-w-[240px]">
+    <Link href={href} passHref className="w-[240px]">
       <FlexLayout className="flex-col group">
         <Box className="overflow-hidden rounded-lg w-[240px] h-[360px]">
           <Image

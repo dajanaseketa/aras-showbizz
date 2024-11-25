@@ -1,7 +1,7 @@
 "use client";
 
 import { getMovieDetailsOptions } from "@/api/tmdbApi";
-import { Box, FlexLayout, Text } from "@/ui/components";
+import { FlexLayout, Text } from "@/ui/components";
 import {
   getAbsoluteImageUrl,
   getRatingPercentage,
@@ -22,8 +22,8 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
   }
 
   return (
-    <Box
-      className="relative h-[596px]"
+    <FlexLayout
+      className="relative h-[596px] justify-center"
       style={{
         background: `url(${getAbsoluteImageUrl(
           movieDetails.poster_path
@@ -33,7 +33,7 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
         backgroundBlendMode: "multiply",
       }}
     >
-      <FlexLayout className="absolute top-0 gap-center-grid-l-gutter-width py-[55px] w-full justify-center">
+      <FlexLayout className="absolute top-0 gap-center-grid-l-gutter-width py-[55px] w-[1200px]">
         <Image
           className="w-[324px] h-[486px] rounded-[10px]"
           src={getAbsoluteImageUrl(movieDetails.poster_path)}
@@ -44,7 +44,11 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
         <FlexLayout className="flex-col gap-[37px]">
           <FlexLayout className="flex-col gap-2xs">
             <FlexLayout className="gap-m">
-              <Text variant="h3" color="text-dark-content-content-primary">
+              <Text
+                variant="h3"
+                color="text-dark-content-content-primary"
+                className="max-w-[70%]"
+              >
                 {movieDetails.title}
               </Text>
               <Text variant="h3" color="text-dark-content-content-secondary">
@@ -63,19 +67,21 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
               </Text>
             </FlexLayout>
           </FlexLayout>
-          <FlexLayout className="flex-col gap-3xs max-w-[846px]">
-            <Text variant="h5" color="text-dark-content-content-primary">
-              Overview
-            </Text>
-            <Text
-              variant="paragraph-m"
-              color="text-dark-content-content-secondary"
-            >
-              {movieDetails.overview}
-            </Text>
-          </FlexLayout>
+          {!!movieDetails.overview && (
+            <FlexLayout className="flex-col gap-3xs max-w-[846px]">
+              <Text variant="h5" color="text-dark-content-content-primary">
+                Overview
+              </Text>
+              <Text
+                variant="paragraph-m"
+                color="text-dark-content-content-secondary"
+              >
+                {movieDetails.overview}
+              </Text>
+            </FlexLayout>
+          )}
         </FlexLayout>
       </FlexLayout>
-    </Box>
+    </FlexLayout>
   );
 };

@@ -10,6 +10,7 @@ import { InformationCard, LargeCardsContainer } from "@/components";
 import { Button, Divider, FlexLayout, Tag, Text } from "@/ui/components";
 import { useQuery } from "@tanstack/react-query";
 import { Media } from "./Media";
+import isEmpty from "lodash/isEmpty";
 
 interface DetailsProps {
   id: string;
@@ -28,8 +29,8 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
   return (
     <FlexLayout className="justify-center py-2xl">
       <FlexLayout className="gap-center-grid-l-gutter-width w-center-grid-l-container-max-width">
-        {!!movieCredits && !!movieCredits.cast && (
-          <FlexLayout className="flex-col gap-2xl max-w-[894px]">
+        <FlexLayout className="flex-col gap-2xl max-w-[894px]">
+          {!!movieCredits && !isEmpty(movieCredits.cast) && (
             <LargeCardsContainer
               cards={movieCredits.cast.map((person) => ({
                 href: `/person/${person.id}`,
@@ -39,9 +40,11 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
               }))}
               title="Cast"
             />
+          )}
+          {!!movieImages && !isEmpty(movieImages?.backdrops) && (
             <Media images={movieImages?.backdrops} />
-          </FlexLayout>
-        )}
+          )}
+        </FlexLayout>
         <FlexLayout className="gap-s w-[276px]">
           <Divider />
           <FlexLayout className="flex-col gap-m w-full">
@@ -53,7 +56,7 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
               {!!movieDetails.status && (
                 <InformationCard label="Status" value={movieDetails.status} />
               )}
-              {!!movieDetails.production_companies && (
+              {!isEmpty(movieDetails.production_companies) && (
                 <InformationCard
                   label="Network"
                   value={movieDetails.production_companies
@@ -67,7 +70,7 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
                   value={movieDetails.original_language}
                 />
               )}
-              {!!movieKeywords && !!movieKeywords.keywords.length && (
+              {!!movieKeywords && !isEmpty(movieKeywords.keywords) && (
                 <FlexLayout className="flex-col gap-3xs">
                   <Text
                     color="text-content-content-secondary"
