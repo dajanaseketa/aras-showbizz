@@ -50,12 +50,12 @@ export type Keywords = {
 
 export type Images = {
   id: number;
-  posters: Image[];
-  logos: Image[];
-  backdrops: Image[];
+  posters: MediaImage[];
+  logos: MediaImage[];
+  backdrops: MediaImage[];
 };
 
-export type Image = {
+export type MediaImage = {
   file_path: string;
   height: number;
   width: number;

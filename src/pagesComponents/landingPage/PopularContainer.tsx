@@ -9,9 +9,9 @@ import { MediaType } from "@/api/types";
 import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
 import {
-  mapMovieToCard,
-  mapPersonToCard,
-  mapTvShowToCard,
+  mapMovieToItem,
+  mapPersonToItem,
+  mapTvShowToItem,
 } from "@/utils/apiDataTransformations";
 
 import { useQuery } from "@tanstack/react-query";
@@ -44,11 +44,11 @@ export const PopularContainer: React.FC = () => {
 
   const cards = useMemo(() => {
     if (type === MediaType.Movie) {
-      return popularMovies?.map(mapMovieToCard);
+      return popularMovies?.map(mapMovieToItem);
     } else if (type === MediaType.TvShow) {
-      return popularTvShows?.map(mapTvShowToCard);
+      return popularTvShows?.map(mapTvShowToItem);
     } else if (type === MediaType.Person) {
-      return popularPeople?.map(mapPersonToCard);
+      return popularPeople?.map(mapPersonToItem);
     } else {
       return;
     }

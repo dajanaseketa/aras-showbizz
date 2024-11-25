@@ -23,7 +23,6 @@ export const Header: React.FC = () => {
         onClick={() => setIsSearchOpen((value) => !value)}
       />
       <SearchDialog
-        title="Search"
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
       />

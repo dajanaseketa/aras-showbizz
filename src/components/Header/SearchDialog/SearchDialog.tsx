@@ -1,32 +1,46 @@
 import { FlexLayout, InputField } from "@/ui/components";
-import { DialogProps, Dialog } from "@/ui/components/Dialog";
 import { useState } from "react";
 import { SearchQueryResults } from "./SearchQueryResults";
+import * as ReactDialog from "@radix-ui/react-dialog";
 
-export const SearchDialog: React.FC<Omit<DialogProps, "children">> = ({
-  title,
+export interface SearchDialogProps {
+  isOpen: boolean;
+  onClose(): void;
+}
+
+export const SearchDialog: React.FC<SearchDialogProps> = ({
   isOpen,
   onClose,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  function handleClose() {
+    onClose();
+    setSearchQuery("");
+  }
+
   return (
-    <Dialog
-      title={title}
-      isOpen={isOpen}
-      onClose={() => {
-        onClose();
-        setSearchQuery("");
-      }}
+    <ReactDialog.Root
+      open={isOpen}
+      onOpenChange={(open) => !open && handleClose()}
     >
-      <FlexLayout className="flex-col min-w-center-grid-l-container-min-width max-w-center-grid-l-container-max-width gap-m">
-        <InputField
-          value={searchQuery}
-          placeholder="Search"
-          onChange={(value) => setSearchQuery(value)}
-        />
-        <SearchQueryResults searchQuery={searchQuery} />
-      </FlexLayout>
-    </Dialog>
+      {isOpen && (
+        <ReactDialog.Portal>
+          <ReactDialog.Overlay className="fixed top-[74px] z-10">
+            <ReactDialog.Content className="flex flex-col outline-none bg-white w-screen h-screen pt-m pb-4xl items-center overflow-y-scroll">
+              <ReactDialog.Title className="hidden">Search</ReactDialog.Title>
+              <FlexLayout className="flex-col min-w-center-grid-l-container-min-width max-w-center-grid-l-container-max-width gap-m">
+                <InputField
+                  value={searchQuery}
+                  placeholder="Search"
+                  onChange={(value) => setSearchQuery(value)}
+                />
+                <SearchQueryResults searchQuery={searchQuery} />
+              </FlexLayout>
+            </ReactDialog.Content>
+          </ReactDialog.Overlay>
+        </ReactDialog.Portal>
+      )}
+    </ReactDialog.Root>
   );
 };
