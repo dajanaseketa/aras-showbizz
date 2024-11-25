@@ -1,28 +1,23 @@
-"use client";
-
-import {
-  getMovieCreditsOptions,
-  getMovieDetailsOptions,
-  getMovieImagesOptions,
-  getMovieKeywordsOptions,
-} from "@/api/tmdbApi";
 import { InformationCard, LargeCardsContainer } from "@/components";
 import { Button, Divider, FlexLayout, Tag, Text } from "@/ui/components";
-import { useQuery } from "@tanstack/react-query";
 import { Media } from "./Media";
 import isEmpty from "lodash/isEmpty";
+import { Movie, Credits, Images, Keywords, TvShow } from "@/api/types";
 
 interface DetailsProps {
-  id: string;
+  details?: Movie | TvShow;
+  credits?: Credits;
+  keywords?: Keywords;
+  images?: Images;
 }
 
-export const Details: React.FC<DetailsProps> = ({ id }) => {
-  const { data: movieDetails } = useQuery(getMovieDetailsOptions(id));
-  const { data: movieCredits } = useQuery(getMovieCreditsOptions(id));
-  const { data: movieKeywords } = useQuery(getMovieKeywordsOptions(id));
-  const { data: movieImages } = useQuery(getMovieImagesOptions(id));
-
-  if (!movieDetails) {
+export const Details: React.FC<DetailsProps> = ({
+  details,
+  credits,
+  keywords,
+  images,
+}) => {
+  if (!details) {
     return;
   }
 
@@ -30,9 +25,9 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
     <FlexLayout className="justify-center py-2xl">
       <FlexLayout className="gap-center-grid-l-gutter-width w-center-grid-l-container-max-width">
         <FlexLayout className="flex-col gap-2xl max-w-[894px]">
-          {!!movieCredits && !isEmpty(movieCredits.cast) && (
+          {!!credits && !isEmpty(credits.cast) && (
             <LargeCardsContainer
-              cards={movieCredits.cast.map((person) => ({
+              cards={credits.cast.map((person) => ({
                 href: `/person/${person.id}`,
                 imageUrl: person.profile_path,
                 title: person.name,
@@ -41,8 +36,8 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
               title="Cast"
             />
           )}
-          {!!movieImages && !isEmpty(movieImages?.backdrops) && (
-            <Media images={movieImages?.backdrops} />
+          {!!images && !isEmpty(images?.backdrops) && (
+            <Media images={images?.backdrops} />
           )}
         </FlexLayout>
         <FlexLayout className="gap-s w-[276px]">
@@ -53,24 +48,24 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
               Facts
             </Text>
             <FlexLayout className="flex-col gap-s">
-              {!!movieDetails.status && (
-                <InformationCard label="Status" value={movieDetails.status} />
+              {!!details.status && (
+                <InformationCard label="Status" value={details.status} />
               )}
-              {!isEmpty(movieDetails.production_companies) && (
+              {!isEmpty(details.production_companies) && (
                 <InformationCard
                   label="Network"
-                  value={movieDetails.production_companies
+                  value={details.production_companies
                     .map((company) => company.name)
                     .join(", ")}
                 />
               )}
-              {!!movieDetails.original_language && (
+              {!!details.original_language && (
                 <InformationCard
                   label="Original language"
-                  value={movieDetails.original_language}
+                  value={details.original_language}
                 />
               )}
-              {!!movieKeywords && !isEmpty(movieKeywords.keywords) && (
+              {!!keywords && !isEmpty(keywords.keywords) && (
                 <FlexLayout className="flex-col gap-3xs">
                   <Text
                     color="text-content-content-secondary"
@@ -84,7 +79,7 @@ export const Details: React.FC<DetailsProps> = ({ id }) => {
                     color="text-content-content-brand"
                   >
                     <FlexLayout className="gap-2 flex-wrap">
-                      {movieKeywords.keywords.map((keyword, index) => (
+                      {keywords.keywords.map((keyword, index) => (
                         <Tag
                           key={`${keyword.name}-${index}`}
                           label={keyword.name}

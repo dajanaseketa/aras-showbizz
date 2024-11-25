@@ -3,7 +3,7 @@
 import { getPersonDetailsOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
 import { FlexLayout, Text } from "@/ui/components";
-import { mapItemsToCards } from "@/utils/apiDataTransformations";
+import { mapMediaItemsToItems } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
@@ -19,7 +19,7 @@ export const Biography: React.FC<BiographyProps> = ({ id }) => {
       return [];
     }
 
-    return mapItemsToCards(personDetails.known_for);
+    return mapMediaItemsToItems(personDetails.known_for);
   }, [personDetails]);
 
   if (!personDetails) {

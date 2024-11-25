@@ -5,7 +5,7 @@ import {
   isMovie,
   isPerson,
   isTvShow,
-  mapItemsToCards,
+  mapMediaItemsToItems,
 } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import isEmpty from "lodash/isEmpty";
@@ -44,7 +44,7 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
         <>
           <Divider variant="horizontal" />
           <SmallCardsContainer
-            cards={mapItemsToCards(peopleResults)}
+            cards={mapMediaItemsToItems(peopleResults)}
             title="Top searched people"
           />
         </>
@@ -55,7 +55,7 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
           <LargeCardsContainer
             titleVariant="h5"
             title="Top searched movies"
-            cards={mapItemsToCards(movieResults)}
+            cards={mapMediaItemsToItems(movieResults)}
           />
         </>
       )}
@@ -65,7 +65,7 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
           <LargeCardsContainer
             titleVariant="h5"
             title="Top searched TV Shows"
-            cards={mapItemsToCards(tvShowResults)}
+            cards={mapMediaItemsToItems(tvShowResults)}
           />
         </>
       )}

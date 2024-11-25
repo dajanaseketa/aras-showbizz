@@ -2,7 +2,7 @@
 
 import { getPersonCreditsOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
-import { mapItemsToCards } from "@/utils/apiDataTransformations";
+import { mapMediaItemsToItems } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 
 interface KnownForProps {
@@ -19,7 +19,7 @@ export const KnownFor: React.FC<KnownForProps> = ({ id }) => {
   return (
     <LargeCardsContainer
       title="Known For"
-      cards={mapItemsToCards(personCredits.cast)}
+      cards={mapMediaItemsToItems(personCredits.cast)}
     />
   );
 };

@@ -6,7 +6,7 @@ import {
   getMovieRecommendationsOptions,
 } from "@/api/tmdbApi";
 import { Footer, Header, getQueryClient } from "@/components";
-import { Details, Overview, Recommendations } from "@/pagesComponents";
+import { MovieContent } from "@/pagesComponents";
 import { FlexLayout } from "@/ui/components";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
@@ -27,10 +27,8 @@ export default async function MoviePage({
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Header />
-      <FlexLayout className="flex-col mx-auto min-h-screen">
-        <Overview id={id} />
-        <Details id={id} />
-        <Recommendations id={id} />
+      <FlexLayout className="flex-col min-h-screen">
+        <MovieContent id={id} />
       </FlexLayout>
       <Footer />
     </HydrationBoundary>

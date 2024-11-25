@@ -2,9 +2,9 @@ import { queryOptions } from "@tanstack/react-query";
 import {
   MediaItem,
   Movie,
-  MovieCredits,
-  MovieImages,
-  MovieKeywords,
+  Credits,
+  Images,
+  Keywords,
   Person,
   PersonCredits,
   TvShow,
@@ -151,7 +151,7 @@ export function getMovieRecommendationsOptions(id: string) {
 // Movie Credits
 
 async function getMovieCredits(id: string) {
-  return fetcher<MovieCredits>(`/movie/${id}/credits`);
+  return fetcher<Credits>(`/movie/${id}/credits`);
 }
 
 export function getMovieCreditsOptions(id: string) {
@@ -164,7 +164,7 @@ export function getMovieCreditsOptions(id: string) {
 // Movie Keywords
 
 async function getMovieKeywords(id: string) {
-  return fetcher<MovieKeywords>(`/movie/${id}/keywords`);
+  return fetcher<Keywords>(`/movie/${id}/keywords`);
 }
 
 export function getMovieKeywordsOptions(id: string) {
@@ -177,12 +177,77 @@ export function getMovieKeywordsOptions(id: string) {
 // Movie Images
 
 async function getMovieImages(id: string) {
-  return fetcher<MovieImages>(`/movie/${id}/images`);
+  return fetcher<Images>(`/movie/${id}/images`);
 }
 
 export function getMovieImagesOptions(id: string) {
   return queryOptions({
     queryKey: ["movie-images", id],
     queryFn: async () => await getMovieImages(id),
+  });
+}
+
+// Tv Show Details
+
+async function getTvShowDetails(id: string) {
+  return fetcher<TvShow>(`/tv/${id}`);
+}
+
+export function getTvShowDetailsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["tv", id],
+    queryFn: async () => await getTvShowDetails(id),
+  });
+}
+
+// Tv Show Recommendations
+
+async function getTvShowRecommendations(id: string) {
+  return fetcher<TvShow[]>(`/tv/${id}/recommendations`);
+}
+
+export function getTvShowRecommendationsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["tv-recommendations", id],
+    queryFn: async () => await getTvShowRecommendations(id),
+  });
+}
+
+// Tv Show Credits
+
+async function getTvShowCredits(id: string) {
+  return fetcher<Credits>(`/tv/${id}/credits`);
+}
+
+export function getTvShowCreditsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["tv-credits", id],
+    queryFn: async () => await getTvShowCredits(id),
+  });
+}
+
+// Tv Show Keywords
+
+async function getTvShowKeywords(id: string) {
+  return fetcher<Keywords>(`/tv/${id}/keywords`);
+}
+
+export function getTvShowKeywordsOptions(id: string) {
+  return queryOptions({
+    queryKey: ["tv-keywords", id],
+    queryFn: async () => await getTvShowKeywords(id),
+  });
+}
+
+// Tv Show Images
+
+async function getTvShowImages(id: string) {
+  return fetcher<Images>(`/tv/${id}/images`);
+}
+
+export function getTvShowImagesOptions(id: string) {
+  return queryOptions({
+    queryKey: ["tv-images", id],
+    queryFn: async () => await getTvShowImages(id),
   });
 }

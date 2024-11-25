@@ -27,15 +27,15 @@ export function isPerson(item: MediaItem): item is Person {
   return item.media_type === MediaType.Person;
 }
 
-export function mapItemsToCards(items: (Movie | TvShow | Person)[]) {
+export function mapMediaItemsToItems(items: (Movie | TvShow | Person)[]) {
   return items.map((item) => {
     switch (true) {
       case isMovie(item):
-        return mapMovieToCard(item);
+        return mapMovieToItem(item);
       case isTvShow(item):
-        return mapTvShowToCard(item);
+        return mapTvShowToItem(item);
       case isPerson(item):
-        return mapPersonToCard(item);
+        return mapPersonToItem(item);
       default:
         return {
           href: "/",
@@ -46,30 +46,47 @@ export function mapItemsToCards(items: (Movie | TvShow | Person)[]) {
   });
 }
 
-export function mapMovieToCard(movie: Movie) {
+export function mapMovieToItem(movie: Movie): Item {
   return {
     href: `/movie/${movie.id}`,
     imageUrl: movie.poster_path,
     title: movie.title,
     description: dayjs(movie.release_date).format("D MMM: YYYY"),
+    releaseDate: movie.release_date,
     rating: `${getRatingPercentage(movie.vote_average)}%`,
+    genres: movie.genres?.map((genre) => genre.name).join(", "),
+    overview: movie.overview,
   };
 }
 
-export function mapTvShowToCard(tvShow: TvShow) {
+export function mapTvShowToItem(tvShow: TvShow): Item {
   return {
     href: `/tv/${tvShow.id}`,
     imageUrl: tvShow.poster_path,
     title: tvShow.name,
     description: dayjs(tvShow.first_air_date).format("D MMM: YYYY"),
+    releaseDate: tvShow.first_air_date,
     rating: `${getRatingPercentage(tvShow.vote_average)}%`,
+    genres: tvShow.genres?.map((genre) => genre.name).join(", "),
+    overview: tvShow.overview,
   };
 }
 
-export function mapPersonToCard(person: Person) {
+export function mapPersonToItem(person: Person): Item {
   return {
     href: `/person/${person.id}`,
     imageUrl: person.profile_path,
     title: person.name,
   };
 }
+
+export type Item = {
+  href: string;
+  imageUrl: string;
+  title: string;
+  releaseDate?: string;
+  description?: string;
+  rating?: string;
+  genres?: string;
+  overview?: string;
+};

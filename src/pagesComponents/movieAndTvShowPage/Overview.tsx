@@ -1,23 +1,14 @@
-"use client";
-
-import { getMovieDetailsOptions } from "@/api/tmdbApi";
 import { FlexLayout, Text } from "@/ui/components";
-import {
-  getAbsoluteImageUrl,
-  getRatingPercentage,
-} from "@/utils/apiDataTransformations";
-import { useQuery } from "@tanstack/react-query";
+import { getAbsoluteImageUrl, Item } from "@/utils/apiDataTransformations";
 import dayjs from "dayjs";
 import Image from "next/image";
 
 interface OverviewProps {
-  id: string;
+  details?: Item;
 }
 
-export const Overview: React.FC<OverviewProps> = ({ id }) => {
-  const { data: movieDetails } = useQuery(getMovieDetailsOptions(id));
-
-  if (!movieDetails) {
+export const Overview: React.FC<OverviewProps> = ({ details }) => {
+  if (!details) {
     return;
   }
 
@@ -26,7 +17,7 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
       className="relative h-[596px] justify-center"
       style={{
         background: `url(${getAbsoluteImageUrl(
-          movieDetails.poster_path
+          details.imageUrl
         )}), var(--accent-accent-600)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -36,10 +27,10 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
       <FlexLayout className="absolute top-0 gap-center-grid-l-gutter-width py-[55px] w-[1200px]">
         <Image
           className="w-[324px] h-[486px] rounded-[10px]"
-          src={getAbsoluteImageUrl(movieDetails.poster_path)}
+          src={getAbsoluteImageUrl(details.imageUrl)}
           height={486}
           width={324}
-          alt={`${movieDetails.title} movie cover`}
+          alt={`${details.title} movie cover`}
         />
         <FlexLayout className="flex-col gap-[37px]">
           <FlexLayout className="flex-col gap-2xs">
@@ -49,10 +40,10 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
                 color="text-dark-content-content-primary"
                 className="max-w-[70%]"
               >
-                {movieDetails.title}
+                {details.title}
               </Text>
               <Text variant="h3" color="text-dark-content-content-secondary">
-                ({dayjs(movieDetails.release_date).format("YYYY")})
+                ({dayjs(details.releaseDate).format("YYYY")})
               </Text>
             </FlexLayout>
             <FlexLayout className="justify-between">
@@ -60,14 +51,14 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
                 variant="label-m-regular"
                 color="text-dark-content-content-secondary"
               >
-                {movieDetails.genres.map((genre) => genre.name).join(", ")}
+                {details.genres}
               </Text>
               <Text variant="h5" color="text-content-content-positive">
-                {getRatingPercentage(movieDetails.vote_average)}%
+                {details.rating}
               </Text>
             </FlexLayout>
           </FlexLayout>
-          {!!movieDetails.overview && (
+          {!!details.overview && (
             <FlexLayout className="flex-col gap-3xs max-w-[846px]">
               <Text variant="h5" color="text-dark-content-content-primary">
                 Overview
@@ -76,7 +67,7 @@ export const Overview: React.FC<OverviewProps> = ({ id }) => {
                 variant="paragraph-m"
                 color="text-dark-content-content-secondary"
               >
-                {movieDetails.overview}
+                {details.overview}
               </Text>
             </FlexLayout>
           )}

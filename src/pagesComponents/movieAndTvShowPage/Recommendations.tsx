@@ -1,22 +1,17 @@
-"use client";
-
-import { getMovieRecommendationsOptions } from "@/api/tmdbApi";
+import { Movie, TvShow } from "@/api/types";
 import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
-import { mapItemsToCards } from "@/utils/apiDataTransformations";
-import { useQuery } from "@tanstack/react-query";
+import { mapMediaItemsToItems } from "@/utils/apiDataTransformations";
 import isEmpty from "lodash/isEmpty";
 
 interface RecommendationsProps {
-  id: string;
+  recommendations?: Movie[] | TvShow[];
 }
 
-export const Recommendations: React.FC<RecommendationsProps> = ({ id }) => {
-  const { data: movieRecommendations } = useQuery(
-    getMovieRecommendationsOptions(id)
-  );
-
-  if (!movieRecommendations || isEmpty(movieRecommendations)) {
+export const Recommendations: React.FC<RecommendationsProps> = ({
+  recommendations,
+}) => {
+  if (!recommendations || isEmpty(recommendations)) {
     return;
   }
 
@@ -25,7 +20,7 @@ export const Recommendations: React.FC<RecommendationsProps> = ({ id }) => {
       <Box className="max-w-center-grid-l-container-max-width min-w-center-grid-l-container-min-width">
         <LargeCardsContainer
           title="Recommendations"
-          cards={mapItemsToCards(movieRecommendations)}
+          cards={mapMediaItemsToItems(recommendations)}
         />
       </Box>
     </FlexLayout>
