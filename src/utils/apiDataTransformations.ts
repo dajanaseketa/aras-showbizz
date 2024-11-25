@@ -27,7 +27,11 @@ export function isPerson(item: MediaItem): item is Person {
   return item.media_type === MediaType.Person;
 }
 
-export function mapMediaItemsToItems(items: (Movie | TvShow | Person)[]) {
+export function mapMediaItemsToItems(items?: (Movie | TvShow | Person)[]) {
+  if (!items) {
+    return [];
+  }
+
   return items.map((item) => {
     switch (true) {
       case isMovie(item):

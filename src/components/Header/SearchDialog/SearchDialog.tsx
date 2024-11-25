@@ -29,7 +29,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
           <ReactDialog.Overlay className="fixed top-[74px] z-10">
             <ReactDialog.Content className="flex flex-col outline-none bg-white w-screen h-screen pt-m pb-4xl items-center overflow-y-scroll">
               <ReactDialog.Title className="hidden">Search</ReactDialog.Title>
-              <FlexLayout className="flex-col min-w-center-grid-l-container-min-width max-w-center-grid-l-container-max-width gap-m">
+              <FlexLayout className="flex-col w-center-grid-l-container-max-width gap-m">
                 <InputField
                   value={searchQuery}
                   placeholder="Search"

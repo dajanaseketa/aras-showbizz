@@ -1,4 +1,9 @@
-import { getSearchResults } from "@/api/tmdbApi";
+import {
+  getSearchResults,
+  popularMoviesOptions,
+  popularPeopleOptions,
+  popularTvShowsOptions,
+} from "@/api/tmdbApi";
 import { LargeCardsContainer, SmallCardsContainer } from "@/components";
 import { Divider, FlexLayout, Text } from "@/ui/components";
 import {
@@ -6,6 +11,9 @@ import {
   isPerson,
   isTvShow,
   mapMediaItemsToItems,
+  mapMovieToItem,
+  mapPersonToItem,
+  mapTvShowToItem,
 } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import isEmpty from "lodash/isEmpty";
@@ -22,15 +30,25 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
     queryFn: async () => await getSearchResults(searchQuery),
   });
 
-  const movieResults = searchResults?.filter(isMovie);
-  const tvShowResults = searchResults?.filter(isTvShow);
-  const peopleResults = searchResults?.filter(isPerson);
+  const { data: popularMovies } = useQuery(popularMoviesOptions);
+  const { data: popularTvShows } = useQuery(popularTvShowsOptions);
+  const { data: popularPeople } = useQuery(popularPeopleOptions);
 
-  if (
-    isEmpty(peopleResults) &&
-    isEmpty(movieResults) &&
-    isEmpty(tvShowResults)
-  ) {
+  const movieResults = isEmpty(searchQuery)
+    ? popularMovies
+    : searchResults?.filter(isMovie);
+  const tvShowResults = isEmpty(searchQuery)
+    ? popularTvShows
+    : searchResults?.filter(isTvShow);
+  const peopleResults = isEmpty(searchQuery)
+    ? popularPeople
+    : searchResults?.filter(isPerson);
+
+  const movies = movieResults?.map(mapMovieToItem);
+  const tvShows = tvShowResults?.map(mapTvShowToItem);
+  const people = peopleResults?.map(mapPersonToItem);
+
+  if (isEmpty(people) && isEmpty(movies) && isEmpty(tvShows)) {
     return (
       <Text variant="paragraph-l" className="pt-4xl text-center">
         No results for `{searchQuery}`. <br /> Try typing something else.
@@ -40,32 +58,29 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
 
   return (
     <FlexLayout className="flex-col gap-m">
-      {peopleResults && !isEmpty(peopleResults) && (
+      {!!people && !isEmpty(people) && (
         <>
           <Divider variant="horizontal" />
-          <SmallCardsContainer
-            cards={mapMediaItemsToItems(peopleResults)}
-            title="Top searched people"
-          />
+          <SmallCardsContainer cards={people} title="Top searched people" />
         </>
       )}
-      {movieResults && !isEmpty(movieResults) && (
+      {!!movies && !isEmpty(movies) && (
         <>
           <Divider variant="horizontal" />
           <LargeCardsContainer
             titleVariant="h5"
             title="Top searched movies"
-            cards={mapMediaItemsToItems(movieResults)}
+            cards={movies}
           />
         </>
       )}
-      {tvShowResults && !isEmpty(tvShowResults) && (
+      {!!tvShows && !isEmpty(tvShows) && (
         <>
           <Divider variant="horizontal" />
           <LargeCardsContainer
             titleVariant="h5"
             title="Top searched TV Shows"
-            cards={mapMediaItemsToItems(tvShowResults)}
+            cards={tvShows}
           />
         </>
       )}

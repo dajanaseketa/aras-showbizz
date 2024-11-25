@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReactQueryProvider } from "@/components";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export const metadata: Metadata = {
   title: "Aras Showbizz",
@@ -17,7 +16,6 @@ export default function RootLayout({
     <html lang="en">
       <ReactQueryProvider>
         <body>{children}</body>
-        <ReactQueryDevtools />
       </ReactQueryProvider>
     </html>
   );

@@ -40,7 +40,7 @@ export const Details: React.FC<DetailsProps> = ({
             <Media images={images?.backdrops} />
           )}
         </FlexLayout>
-        <FlexLayout className="gap-s w-[276px]">
+        <FlexLayout className="gap-s w-[276px] shrink-0">
           <Divider />
           <FlexLayout className="flex-col gap-m w-full">
             <Button label="Play now" isFullWidth />
