@@ -5,7 +5,8 @@ export function getAbsoluteImageUrl(relativeUrl: string, imageSize?: string) {
   if (!relativeUrl) {
     return "/images/movie-image-placeholder.png";
   }
-  const baseUrl = "https://image.tmdb.org/t/p/";
+
+  const baseUrl = process.env.NEXT_PUBLIC_API_IMAGE_BASE_URL;
   const size = imageSize ?? "w500";
 
   return `${baseUrl}${size}${relativeUrl}`;

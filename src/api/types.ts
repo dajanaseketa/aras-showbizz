@@ -31,7 +31,7 @@ export type ProductionCompany = {
   origin_country: string;
 };
 
-export type Credits = {
+export type MovieCredits = {
   id: number;
   cast: CastMember[];
 };
@@ -81,7 +81,7 @@ export type Person = {
   profile_path: string;
   media_type: MediaType;
   known_for_department: string;
-  known_for: Movie[];
+  known_for: (Movie | TvShow)[];
   biography: string;
   birthday: string;
   place_of_birth: string;

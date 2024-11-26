@@ -2,7 +2,7 @@ import { queryOptions } from "@tanstack/react-query";
 import {
   MediaItem,
   Movie,
-  Credits,
+  MovieCredits,
   Images,
   Keywords,
   Person,
@@ -10,7 +10,7 @@ import {
   TvShow,
 } from "./types";
 
-const BASE_URL = "https://api.themoviedb.org/3";
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
 const fetcher = async <T>(
@@ -151,7 +151,7 @@ export function getMovieRecommendationsOptions(id: string) {
 // Movie Credits
 
 async function getMovieCredits(id: string) {
-  return fetcher<Credits>(`/movie/${id}/credits`);
+  return fetcher<MovieCredits>(`/movie/${id}/credits`);
 }
 
 export function getMovieCreditsOptions(id: string) {
@@ -216,7 +216,7 @@ export function getTvShowRecommendationsOptions(id: string) {
 // Tv Show Credits
 
 async function getTvShowCredits(id: string) {
-  return fetcher<Credits>(`/tv/${id}/credits`);
+  return fetcher<MovieCredits>(`/tv/${id}/credits`);
 }
 
 export function getTvShowCreditsOptions(id: string) {

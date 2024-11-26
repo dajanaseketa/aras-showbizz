@@ -2,11 +2,11 @@ import { InformationCard, LargeCardsContainer } from "@/components";
 import { Button, Divider, FlexLayout, Tag, Text } from "@/ui/components";
 import { Media } from "./Media";
 import isEmpty from "lodash/isEmpty";
-import { Movie, Credits, Images, Keywords, TvShow } from "@/api/types";
+import { Movie, MovieCredits, Images, Keywords, TvShow } from "@/api/types";
 
 interface DetailsProps {
   details?: Movie | TvShow;
-  credits?: Credits;
+  credits?: MovieCredits;
   keywords?: Keywords;
   images?: Images;
 }
