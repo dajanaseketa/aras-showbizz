@@ -15,12 +15,19 @@ export const Header: React.FC = () => {
       className="h-[74px] bg-dark-background-background-black sticky top-0 px-stretch-grid-margin-width py-[14px] justify-between items-center z-10"
     >
       <Link href="/" passHref>
-        <Image src="/images/logo.svg" alt="Logo" width={47.75} height={14.78} />
+        <Image
+          src="/images/logo.svg"
+          alt="Logo"
+          width={47.75}
+          height={14.78}
+          className="pointer-events-auto"
+        />
       </Link>
       <Icon
         icon={isSearchOpen ? "close" : "search"}
         color="text-dark-content-content-brand"
         onClick={() => setIsSearchOpen(true)}
+        className="pointer-events-auto"
       />
       <SearchDialog
         isOpen={isSearchOpen}
