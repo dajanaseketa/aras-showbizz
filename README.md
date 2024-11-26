@@ -38,8 +38,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Project setup
 
 In order for API calls to work, you need to create .env.local file within the project root directory and add these three env variables:
-NEXT_PUBLIC_API_BASE_URL=https://api.themoviedb.org/3
-NEXT_PUBLIC_TMDB_API_KEY={your_personal_api_key}
-NEXT_PUBLIC_API_IMAGE_BASE_URL=https://image.tmdb.org/t/p/
+
+- NEXT_PUBLIC_API_BASE_URL=https://api.themoviedb.org/3
+- NEXT_PUBLIC_TMDB_API_KEY={your_personal_api_key}
+- NEXT_PUBLIC_API_IMAGE_BASE_URL=https://image.tmdb.org/t/p/
 
 After that, you can simply run `npm run dev`.
