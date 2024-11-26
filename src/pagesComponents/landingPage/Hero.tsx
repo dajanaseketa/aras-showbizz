@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
         <Text as="h1" variant="h1">
           Welcome.
         </Text>
-        <Text as="h4" variant="h4">
+        <Text variant="h4">
           Millions of movies, TV shows and people to discover. Explore now.
         </Text>
       </FlexLayout>

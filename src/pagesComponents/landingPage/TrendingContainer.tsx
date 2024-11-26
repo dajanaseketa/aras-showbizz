@@ -5,6 +5,7 @@ import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
 import { mapMediaItemsToItems } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
+import isEmpty from "lodash/isEmpty";
 import { useMemo, useState } from "react";
 
 export const TrendingContainer: React.FC = () => {
@@ -35,6 +36,10 @@ export const TrendingContainer: React.FC = () => {
 
     return mapMediaItemsToItems(selectedItems);
   }, [dayTrendingAll, weekTrendingAll, time]);
+
+  if (isEmpty(cards)) {
+    return;
+  }
 
   return (
     <FlexLayout className="py-2xl px-center-grid-l-margin-width justify-center">

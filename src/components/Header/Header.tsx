@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
       <Icon
         icon={isSearchOpen ? "close" : "search"}
         color="text-dark-content-content-brand"
-        onClick={() => setIsSearchOpen((value) => !value)}
+        onClick={() => setIsSearchOpen(true)}
       />
       <SearchDialog
         isOpen={isSearchOpen}

@@ -1,11 +1,8 @@
 "use client";
 
 import { getPersonDetailsOptions } from "@/api/tmdbApi";
-import { LargeCardsContainer } from "@/components";
 import { FlexLayout, Text } from "@/ui/components";
-import { mapMediaItemsToItems } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
 
 interface BiographyProps {
   id: string;
@@ -13,14 +10,6 @@ interface BiographyProps {
 
 export const Biography: React.FC<BiographyProps> = ({ id }) => {
   const { data: personDetails } = useQuery(getPersonDetailsOptions(id));
-
-  const cards = useMemo(() => {
-    if (!personDetails?.known_for) {
-      return [];
-    }
-
-    return mapMediaItemsToItems(personDetails.known_for);
-  }, [personDetails]);
 
   if (!personDetails) {
     return;
@@ -37,7 +26,6 @@ export const Biography: React.FC<BiographyProps> = ({ id }) => {
           </Text>
         </FlexLayout>
       )}
-      <LargeCardsContainer cards={cards} />
     </FlexLayout>
   );
 };

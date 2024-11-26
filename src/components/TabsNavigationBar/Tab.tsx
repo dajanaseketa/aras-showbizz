@@ -16,8 +16,8 @@ export const Tab = React.forwardRef<any, TabProps>(
         ref={ref}
         onClick={onClick}
         className={clsx(
+          "cursor-pointer hover:text-content-content-hover",
           "after:content-[''] after:block after:w-full after:hover:bg-content-content-hover after:focus:bg-content-content-hover",
-          "hover:text-content-content-hover hover:cursor-pointer",
           isSelected
             ? "text-content-content-primary after:mt-2xs after:h-0.5 after:bg-content-content-primary"
             : "text-content-content-secondary after:mt-[11px] after:h-[1px] after:bg-border-border-low-contrast"

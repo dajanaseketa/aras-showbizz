@@ -11,7 +11,7 @@ interface RecommendationsProps {
 export const Recommendations: React.FC<RecommendationsProps> = ({
   recommendations,
 }) => {
-  if (!recommendations || isEmpty(recommendations)) {
+  if (isEmpty(recommendations)) {
     return;
   }
 

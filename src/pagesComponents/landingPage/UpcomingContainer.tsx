@@ -3,27 +3,21 @@
 import { upcomingMoviesOptions } from "@/api/tmdbApi";
 import { LargeCardsContainer } from "@/components";
 import { Box, FlexLayout } from "@/ui/components";
-import { getRatingPercentage } from "@/utils/apiDataTransformations";
+import { mapMovieToItem } from "@/utils/apiDataTransformations";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import isEmpty from "lodash/isEmpty";
 import { useMemo } from "react";
 
 export const UpcomingContainer: React.FC = () => {
   const { data: upcomingMovies } = useQuery(upcomingMoviesOptions);
 
   const cards = useMemo(
-    () =>
-      upcomingMovies?.map((movie) => ({
-        href: `/movie/${movie.id}`,
-        imageUrl: movie.poster_path,
-        title: movie.title,
-        description: dayjs(movie.release_date).format("D MMM: YYYY"),
-        rating: `${getRatingPercentage(movie.vote_average)}%`,
-      })),
+    () => upcomingMovies?.map(mapMovieToItem),
     [upcomingMovies]
   );
 
-  if (!cards) {
+  if (isEmpty(cards)) {
     return;
   }
 

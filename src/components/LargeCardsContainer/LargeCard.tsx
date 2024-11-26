@@ -45,16 +45,18 @@ export const LargeCard: React.FC<LargeCardProps> = ({
             {title}
           </Text>
           <FlexLayout className="justify-between">
-            <Text
-              color={
-                isDark
-                  ? "text-dark-content-content-secondary"
-                  : "text-content-content-secondary"
-              }
-              variant="label-s-regular"
-            >
-              {description}
-            </Text>
+            {description && (
+              <Text
+                color={
+                  isDark
+                    ? "text-dark-content-content-secondary"
+                    : "text-content-content-secondary"
+                }
+                variant="label-s-regular"
+              >
+                {description}
+              </Text>
+            )}
             {rating && (
               <Text
                 color={

@@ -23,7 +23,7 @@ export default async function PersonPage({
       <Header />
       <FlexLayout className="min-h-screen max-w-center-grid-l-container-max-width min-w-center-grid-l-container-min-width py-xl mx-auto gap-center-grid-l-gutter-width">
         <PersonalInfo id={id} />
-        <FlexLayout className="flex-col max-w-[920px]">
+        <FlexLayout className="flex-col max-w-[920px] gap-m">
           <Biography id={id} />
           <KnownFor id={id} />
         </FlexLayout>

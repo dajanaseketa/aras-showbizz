@@ -10,7 +10,6 @@ import {
   isMovie,
   isPerson,
   isTvShow,
-  mapMediaItemsToItems,
   mapMovieToItem,
   mapPersonToItem,
   mapTvShowToItem,

@@ -18,6 +18,7 @@ export const KnownFor: React.FC<KnownForProps> = ({ id }) => {
 
   return (
     <LargeCardsContainer
+      titleVariant="h4"
       title="Known For"
       cards={mapMediaItemsToItems(personCredits.cast)}
     />
