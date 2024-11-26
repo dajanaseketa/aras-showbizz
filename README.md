@@ -34,3 +34,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Project setup
+
+In order for API calls to work, you need to create .env.local file within the project root directory and add these three env variables:
+NEXT_PUBLIC_API_BASE_URL=https://api.themoviedb.org/3
+NEXT_PUBLIC_TMDB_API_KEY={your_personal_api_key}
+NEXT_PUBLIC_API_IMAGE_BASE_URL=https://image.tmdb.org/t/p/
+
+After that, you can simply run `npm run dev`.
