@@ -27,6 +27,7 @@ export const SearchQueryResults: React.FC<SearchQueryResultsProps> = ({
   const { data: searchResults } = useQuery({
     queryKey: ["search", searchQuery],
     queryFn: async () => await getSearchResults(searchQuery),
+    enabled: !!searchQuery,
   });
 
   const { data: popularMovies } = useQuery(popularMoviesOptions);

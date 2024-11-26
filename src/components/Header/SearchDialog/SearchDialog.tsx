@@ -2,6 +2,7 @@ import { FlexLayout, InputField } from "@/ui/components";
 import { useState } from "react";
 import { SearchQueryResults } from "./SearchQueryResults";
 import * as ReactDialog from "@radix-ui/react-dialog";
+import useDebounce from "@/hooks/useDebounce";
 
 export interface SearchDialogProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
   onClose,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 250);
 
   function handleClose() {
     onClose();
@@ -35,7 +37,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
                   placeholder="Search"
                   onChange={(value) => setSearchQuery(value)}
                 />
-                <SearchQueryResults searchQuery={searchQuery} />
+                <SearchQueryResults searchQuery={debouncedSearchQuery} />
               </FlexLayout>
             </ReactDialog.Content>
           </ReactDialog.Overlay>
