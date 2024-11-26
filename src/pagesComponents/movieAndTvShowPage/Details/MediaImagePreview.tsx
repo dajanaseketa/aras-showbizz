@@ -22,10 +22,10 @@ export const MediaImagePreview: React.FC<MediaImagePreviewProps> = ({
       {isOpen && (
         <ReactDialog.Portal>
           <ReactDialog.Overlay
-            className="fixed flex top-[74px] z-10 bg-black bg-opacity-75"
+            className="fixed flex top-[74px] z-10 bg-black w-full bg-opacity-75"
             onClick={onClose}
           >
-            <ReactDialog.Content className="flex pt-2xl flex-col h-screen outline-none items-center">
+            <ReactDialog.Content className="flex pt-2xl w-full flex-col h-screen outline-none items-center">
               <ReactDialog.Title className="hidden">
                 Image Preview
               </ReactDialog.Title>
